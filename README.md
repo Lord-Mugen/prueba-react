@@ -14,7 +14,6 @@ página, se muestra una lista de publicaciones obtenidas de la API JSONPlacehold
 * Se usó Axios para realizar solicitudes a la API JSONPlaceholder para obtener la lista de publicaciones y crear nuevas publicaciones.
 
 
-
 ## Instalación
 usar **npm install** para descargar las dependencias necesarias
 
@@ -22,6 +21,9 @@ usar **npm install** para descargar las dependencias necesarias
 User: prueba
 <br/>
 password: 12345
+
+## Enlace de despliegue
+https://prueba-react-kohl.vercel.app
 
 ## Herramientas usadas:
 * React
