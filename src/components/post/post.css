@@ -1,7 +1,7 @@
 .posts-container {
   max-width: 600px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 2rem;
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -60,4 +60,16 @@ button:hover {
 
 .logout-button:hover {
   background-color: #d32f2f;
+}
+
+@media (min-width: 1024px) {
+  .posts-container {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .posts-container__section {
+    padding: 1rem;
+    height: auto;
+  }
 }

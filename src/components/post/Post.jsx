@@ -53,41 +53,47 @@ const Posts = () => {
   if (isAuthenticated) {
     return (
       <div className="posts-container">
-        <button onClick={handleLogout}>Cerrar Sesión</button>
-        <h2>Lista de Publicaciones</h2>
-        <ul>
-          {posts.map((post) => (
-            <li key={post.id}>
-              <strong>{post.title}</strong>
-              <p>{post.body}</p>
-            </li>
-          ))}
-        </ul>
-        <h2>Crear Nueva Publicación</h2>
-        <form onSubmit={handleCreatePost}>
-          <div className="form-group">
-            <label htmlFor="title">Título:</label>
-            <input
-              type="text"
-              id="title"
-              value={newPost.title}
-              onChange={(e) =>
-                setNewPost({ ...newPost, title: e.target.value })
-              }
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="body">Cuerpo:</label>
-            <textarea
-              id="body"
-              value={newPost.body}
-              onChange={(e) => setNewPost({ ...newPost, body: e.target.value })}
-              required
-            />
-          </div>
-          <button type="submit">Crear Publicación</button>
-        </form>
+        <div className="posts-container__section">
+          <button onClick={handleLogout}>Cerrar Sesión</button>
+          <h2>Lista de Publicaciones</h2>
+          <ul>
+            {posts.map((post) => (
+              <li key={post.id}>
+                <strong>{post.title}</strong>
+                <p>{post.body}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="posts-container__section">
+          <h2>Crear Nueva Publicación</h2>
+          <form onSubmit={handleCreatePost}>
+            <div className="form-group">
+              <label htmlFor="title">Título:</label>
+              <input
+                type="text"
+                id="title"
+                value={newPost.title}
+                onChange={(e) =>
+                  setNewPost({ ...newPost, title: e.target.value })
+                }
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="body">Cuerpo:</label>
+              <textarea
+                id="body"
+                value={newPost.body}
+                onChange={(e) =>
+                  setNewPost({ ...newPost, body: e.target.value })
+                }
+                required
+              />
+            </div>
+            <button type="submit">Crear Publicación</button>
+          </form>
+        </div>
         <ToastContainer />
       </div>
     );
