@@ -1,9 +1,11 @@
+import "./post.css";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { logout } from "../../store/slices/authSlice";
 import { getPost, createPost } from "../../utils/api";
-import "./post.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Posts = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
@@ -13,7 +15,6 @@ const Posts = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      // Obtener la lista de publicaciones al cargar el componente
       getPost()
         .then((response) => {
           setPosts(response.data);
@@ -25,19 +26,24 @@ const Posts = () => {
   }, [isAuthenticated]);
 
   const handleLogout = () => {
-    // Cerrar sesión al hacer clic en el botón de cerrar sesión
     dispatch(logout());
   };
 
   const handleCreatePost = (e) => {
     e.preventDefault();
 
-    // Enviar la nueva publicación a la API y actualizar la lista de publicaciones
     createPost(newPost)
       .then((response) => {
         setPosts([...posts, response.data]);
-        // Limpiar el formulario después de crear la publicación
         setNewPost({ title: "", body: "" });
+        toast.success("¡Nueva publicación creada con éxito!", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
       })
       .catch((error) => {
         console.error("Error al crear la publicación:", error);
@@ -82,6 +88,7 @@ const Posts = () => {
           </div>
           <button type="submit">Crear Publicación</button>
         </form>
+        <ToastContainer />
       </div>
     );
   } else {
